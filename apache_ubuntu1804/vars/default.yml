@@ -1,0 +1,6 @@
+---
+app_user: "ubuntu"
+http_host: "ryjel"
+http_conf: "ryjel.conf"
+http_port: "80"
+disable_default: true
