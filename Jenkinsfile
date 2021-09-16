@@ -1,0 +1,40 @@
+pipeline {  
+  environment {  
+    registry = 'ryjel01/capstone_proj'  
+    registryCredential = 'MyDockerHubID'  
+    dockerImage = ''  
+  }  
+  agent any  
+  stages {  
+    stage ("Clone Git Project") {  
+      steps {  
+        git url: 'https://github.com/ryjel01/capstone_proj.git'  
+      }  
+    }  
+    stage ("Build and test code project") {  
+     steps {  
+        sh 'pwd'  
+        sh 'ls -l'  
+        sh 'java -version'  
+        sh 'javac HelloJava.java'  
+        sh 'java HelloJava'  
+      }  
+    }  
+    stage ("Building image") {  
+        steps{  
+            script {  
+                dockerImage = docker.build registry + ":b$BUILD_NUMBER"  
+            }  
+        }  
+    }  
+    stage ("Deploy Image") {  
+        steps {  
+            script {  
+                docker.withRegistry( '', registryCredential ) {  
+                    dockerImage.push()  
+                }  
+            }  
+        }  
+    }  
+  }  
+}
