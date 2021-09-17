@@ -1,2 +1,2 @@
 # capstone_proj
-for capstone project
+This is for capstone project
