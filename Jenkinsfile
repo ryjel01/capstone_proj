@@ -1,6 +1,6 @@
 pipeline {  
   environment {  
-    registry = 'ryjel01/capstone_proj'  
+    registry = 'ryjel01/project1'  
     registryCredential = 'MyDockerHubID'  
     dockerImage = ''  
   }  
@@ -8,7 +8,7 @@ pipeline {
   stages {  
     stage ("Clone Git Project") {  
       steps {  
-        git url: 'https://github.com/ryjel01/capstone_proj.git'  
+        git url: 'https://github.com/ryjel01/project1.git'  
       }  
     }  
     stage ("Build and test code project") {  
